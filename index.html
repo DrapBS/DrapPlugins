@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drap Plugins Store</title>
+    <style>
+        /* تصميم سريع يشبه الديسكورد */
+        body { background: #36393f; color: #dcddde; font-family: sans-serif; padding: 20px; }
+        .card { background: #2f3136; border-radius: 8px; padding: 15px; margin-bottom: 20px; border: 1px solid #444; }
+        .btn { background: #7289da; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+        img, video { max-width: 100%; border-radius: 5px; margin-top: 10px; }
+        h1 { text-align: center; color: #fff; }
+    </style>
+</head>
+<body>
+    <h1>💣 Drap BombSquad Plugins</h1>
+    <div id="mods-container">جاري جلب المودات من ملفاتك...</div>
+
+    <script>
+        const USER = 'DrapBS'; 
+        const REPO = 'DrapPlugins';
+        const FOLDER = 'plugins';
+
+        async function loadMods() {
+            const container = document.getElementById('mods-container');
+            try {
+                const res = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}`);
+                const files = await res.json();
+                container.innerHTML = '';
+
+                for (let file of files) {
+                    if (file.name.endsWith('.py')) {
+                        const fileRes = await fetch(file.download_url);
+                        const text = await fileRes.text();
+                        const match = text.match(/drpmod\s*\{([\s\S]*?)\}/);
+                        
+                        if (match) {
+                            const dataRaw = match[1].replace(/'/g, '"');
+                            const data = JSON.parse('{' + dataRaw + '}');
+                            
+                            container.innerHTML += `
+                                <div class="card">
+                                    <h3>${data.Name} <small>(v${data.Version})</small></h3>
+                                    <p>${data.Description}</p>
+                                    ${data.Picture !== "None" ? `<img src="${data.Picture}">` : ''}
+                                    ${data.Video !== "None" ? `<video controls src="${data.Video}"></video>` : ''}
+                                    <br><a href="${file.download_url}" class="btn" download>تحميل المود مباشر</a>
+                                </div>`;
+                        }
+                    }
+                }
+            } catch (e) { container.innerHTML = "تأكد من إضافة مودات داخل مجلد plugins"; }
+        }
+        loadMods();
+    </script>
+</body>
+      </html>
+      
