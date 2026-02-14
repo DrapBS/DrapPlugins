@@ -3,37 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drap Plugins Store</title>
+    <title>Drap Mods Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Drap BombSquad Plugins</h1>
     <div class="container" id="mods-container">
-        <p>Loading Plugins....</p>
+        <p>Loading mods...</p>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-                        
-                        if (match) {
-                            const dataRaw = match[1].replace(/'/g, '"');
-                            const data = JSON.parse('{' + dataRaw + '}');
-                            
-                            container.innerHTML += `
-                                <div class="card">
-                                    <h3>${data.Name} <small>(v${data.Version})</small></h3>
-                                    <p>${data.Description}</p>
-                                    ${data.Picture !== "None" ? `<img src="${data.Picture}">` : ''}
-                                    ${data.Video !== "None" ? `<video controls src="${data.Video}"></video>` : ''}
-                                    <br><a href="${file.download_url}" class="btn" download>تحميل المود مباشر</a>
-                                </div>`;
-                        }
-                    }
-                }
-            } catch (e) { container.innerHTML = "تأكد من إضافة مودات داخل مجلد plugins"; }
-        }
-        loadMods();
     </script>
 </body>
       </html>
