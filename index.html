@@ -3,19 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drap Mods Store</title>
+    <title>Drap Plugins Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Drap BombSquad Plugins</h1>
-    <div class="container" id="mods-container">
-        <p>Loading mods...</p>
+    <!-- Terminal Animation Screen -->
+    <div id="terminal-screen">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">Drap Terminal</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="prompt">Drap@site ~ $</span>
+                    <span id="terminal-command"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <div id="terminal-output"></div>
+            </div>
+        </div>
     </div>
 
+    <!-- Main Content (Hidden initially) -->
+    <div id="main-content" style="display: none;">
+        <header class="site-header">
+            <h1> Drap BombSquad Mods</h1>
+            <p class="subtitle">أفضل مودات BombSquad في مكان واحد</p>
+        </header>
+        
+        <div class="container" id="mods-container">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>جاري تحميل المودات الرهيبة...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Notification -->
+    <div id="download-notification" class="notification">
+        <span class="notification-icon">📥</span>
+        <span class="notification-text">Downloading...</span>
+    </div>
+
+    <script src="terminal.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
-    </script>
-</body>
-      </html>
-      
