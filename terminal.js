@@ -55,3 +55,8 @@ function showLoading() {
 window.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeCommand, 500); // تأخير بسيط قبل بدء الكتابة
 });
+
+// Start the animation when page loads
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(typeCommand, 500); // تأخير بسيط قبل بدء الكتابة
+});
